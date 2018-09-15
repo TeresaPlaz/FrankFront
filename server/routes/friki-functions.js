@@ -8,53 +8,47 @@ let five = require("johnny-five"), board, lcd, led, servin, running;
 // EtherPortClient INIT 
 const EtherPortClient = require('etherport-client').EtherPortClient;
 
-//WIFI PORT
-//   let port = new EtherPortClient({
-//     host: '192.168.43.46', //'192.168.0.16',  
-//     port: 3030
-//   });
+// WIFI PORT
+  let port = new EtherPortClient({
+    host: '192.168.43.46', //'192.168.0.16',  
+    port: 3030
+  });
 
-//ARDUINO WIFI
-// //ESP8622
-// board = new firmata.Board(port);
-// board.once("ready", function() 
-// {
-//   console.log("ready");
-//   board.isReady = true;
+// ARDUINO WIFI
+//ESP8622
+board = new firmata.Board(port);
+board.once("ready", function() 
+{
+  console.log("ready");
+  board.isReady = true;
 
-//   //Virtual board to access with Johnny5
-//   let Franky = new five.Board({io: board});
-//   Franky.on("ready", function()
-//   {
-//     console.log("five ready");
-//     led = new five.Led.RGB({pins: {green:5,red: 16,blue: 4}}); // | G-D1 => 5 | R-D0 => 16 | B-D2 => 4 |  
-//   });
-// });
+  //Virtual board to access with Johnny5
+  let Franky = new five.Board({io: board});
+  Franky.on("ready", function()
+  {
+    console.log("five ready");
+    led = new five.Led.RGB({pins: {green:5,red: 16,blue: 4}}); // | G-D1 => 5 | R-D0 => 16 | B-D2 => 4 |  
+  });
+});
 
 //ARDUINO CABLE
-let franki = new five.Board();
-franki.on("ready", function(){
-    lcd = new five.LCD({
-      // LCD pin name RS EN DB4 DB5 DB6 DB7
-      // Arduino pin # 7  8  9  10 11 12
-      pins: [7, 8, 9, 10, 11, 12],
-      backlight: 6,
-      rows: 2,
-      cols: 16
-    });
+// let franki = new five.Board();
+// franki.on("ready", function(){
+//     lcd = new five.LCD({
+//       // LCD pin name RS EN DB4 DB5 DB6 DB7
+//       // Arduino pin # 7  8  9  10 11 12
+//       pins: [7, 8, 9, 10, 11, 12],
+//       backlight: 6,
+//       rows: 2,
+//       cols: 16
+//     });
 
-    servin = new five.Servo({
-      pin: 3,
-      // center: true,
-      range: [45, 135]
-  } ); 
-  
-  lcd.clear();
-  // const { text } = req.body;
-  // console.log(text);
-    lcd.cursor(0, 0).print("Your text: ");
-    // lcd.cursor(1, 0).print(text);
-});
+//     servin = new five.Servo({
+//       pin: 3,
+//       // center: true,
+//       range: [45, 135]
+//     }); 
+// });
 
 
 // FUNCTION 01 BLINK
@@ -116,6 +110,7 @@ router.post('/6', (req,res,next) => {
 
 // FUNCTION 07 RUNNING-MAN
 router.get('/7', (req,res,next) => {
+  lcd.clear();
   servin.stop();
   // led.stop().off();
   let frame = 1;
