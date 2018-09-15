@@ -32,28 +32,27 @@ const EtherPortClient = require('etherport-client').EtherPortClient;
 // });
 
 //ARDUINO CABLE
-// let franki = new five.Board();
-// franki.on("ready", function(){
-//     lcd = new five.LCD({
-//       // LCD pin name RS EN DB4 DB5 DB6 DB7
-//       // Arduino pin # 7  8  9  10 11 12
-//       pins: [7, 8, 9, 10, 11, 12],
-//       backlight: 6,
-//       rows: 2,
-//       cols: 16
-//     });
+let franki = new five.Board();
+franki.on("ready", function(){
+    lcd = new five.LCD({
+      // LCD pin name RS EN DB4 DB5 DB6 DB7
+      // Arduino pin # 7  8  9  10 11 12
+      pins: [7, 8, 9, 10, 11, 12],
+      backlight: 6,
+      rows: 2,
+      cols: 16
+    });
 
-//     servin = new five.Servo({
-//       pin: 3,
-//       // center: true,
-//       range: [45, 135]
-//     }); 
-// });
+    servin = new five.Servo({
+      pin: 3,
+      // center: true,
+      range: [45, 135]
+    }); 
+});
 
 
 // FUNCTION 01 BLINK
 router.get('/1', (req,res,next) => {
-  // console.log("holi");
   led.blink(300);
   res.json("Funtion1 - ON");
 });
