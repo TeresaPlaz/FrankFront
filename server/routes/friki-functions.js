@@ -89,7 +89,7 @@ router.get('/5', (req,res,next) => {
 
 // FUNCTION 06 TEXT
 router.post('/6', (req,res,next) => {
-    lcd.clear();
+
   const { text } = req.body;
   console.log(text);
     lcd.cursor(0, 0).print("Your text: ");
@@ -110,7 +110,6 @@ router.post('/6', (req,res,next) => {
 
 // FUNCTION 07 RUNNING-MAN
 router.get('/7', (req,res,next) => {
-  lcd.clear();
   servin.stop();
   // led.stop().off();
   let frame = 1;
