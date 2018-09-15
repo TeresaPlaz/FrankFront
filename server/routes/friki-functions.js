@@ -50,10 +50,10 @@ franki.on("ready", function(){
   } ); 
   
   lcd.clear();
-  const { text } = req.body;
-  console.log(text);
+  // const { text } = req.body;
+  // console.log(text);
     lcd.cursor(0, 0).print("Your text: ");
-    lcd.cursor(1, 0).print(text);
+    // lcd.cursor(1, 0).print(text);
 });
 
 
