@@ -47,7 +47,13 @@ franki.on("ready", function(){
       pin: 3,
       // center: true,
       range: [45, 135]
-    }); 
+  } ); 
+  
+  lcd.clear();
+  const { text } = req.body;
+  console.log(text);
+    lcd.cursor(0, 0).print("Your text: ");
+    lcd.cursor(1, 0).print(text);
 });
 
 
@@ -89,7 +95,7 @@ router.get('/5', (req,res,next) => {
 
 // FUNCTION 06 TEXT
 router.post('/6', (req,res,next) => {
-
+    lcd.clear();
   const { text } = req.body;
   console.log(text);
     lcd.cursor(0, 0).print("Your text: ");
