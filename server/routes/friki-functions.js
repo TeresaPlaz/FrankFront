@@ -92,7 +92,6 @@ router.post('/6', (req,res,next) => {
     lcd.clear();
   const { text } = req.body;
   console.log(text);
-    // led.stop().off();
     lcd.cursor(0, 0).print("Your text: ");
     lcd.cursor(1, 0).print(text);
   
